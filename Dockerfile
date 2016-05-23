@@ -9,7 +9,6 @@ RUN apt-get install -y \
     curl \
     nginx \
     php5-fpm \
-    memcached \
     php5-memcached \
     php5-cli \
     php5-mcrypt \
