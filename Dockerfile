@@ -13,7 +13,10 @@ RUN echo group = staff >> /etc/php5/fpm/pool.d/www.conf
 RUN wget https://getcomposer.org/download/1.1.1/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 RUN wget https://phar.phpunit.de/phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit
 COPY ./serve.sh /usr/bin/serve
+COPY ./restart.sh /restart.sh
 RUN chmod +x /usr/bin/serve
+RUN chmod +x /restart.sh
+CMD /restart.sh
 ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 80 443
 WORKDIR /var/www
