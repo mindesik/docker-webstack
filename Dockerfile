@@ -15,7 +15,8 @@ RUN apt-get install -y \
     php5-curl \
     php5-mysql \
     php5-sqlite \
-    php5-pgsql
+    php5-pgsql \
+    php5-xdebug
 
 RUN wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz && tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
 RUN ls -l /usr/local/bin/node
