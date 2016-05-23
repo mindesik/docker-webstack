@@ -15,5 +15,7 @@ RUN wget https://phar.phpunit.de/phpunit.phar && mv phpunit.phar /usr/local/bin/
 COPY ./serve.sh /usr/bin/serve
 RUN chmod +x /usr/bin/serve
 ENV DEBIAN_FRONTEND noninteractive
+CMD service nginx restart
+CMD service php5-fpm restart
 EXPOSE 80 443
 WORKDIR /var/www
