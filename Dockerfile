@@ -8,7 +8,6 @@ RUN apt-get install -y \
     wget \
     curl \
     nginx \
-    nginx \
     php5-fpm \
     memcached \
     php5-memcached \
