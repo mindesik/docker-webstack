@@ -4,6 +4,7 @@ MAINTAINER Eugene Min <e.min@milax.com>
 RUN apt-get update -y
 RUN apt-get install -y \
     apt-utils \
+    sudo \
     nano \
     wget \
     curl \
