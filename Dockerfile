@@ -24,7 +24,7 @@ RUN ls -l /usr/local/bin/npm
 RUN npm i -g npm
 RUN npm i -g gulp-cli
 
-RUN echo user = 1000 >> /etc/php5/fpm/pool.d/www.conf
+RUN echo user = debian >> /etc/php5/fpm/pool.d/www.conf
 RUN echo group = staff >> /etc/php5/fpm/pool.d/www.conf
 
 RUN wget https://getcomposer.org/download/1.1.1/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
@@ -35,4 +35,8 @@ RUN chmod +x /usr/bin/serve
 
 ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 80 443
-WORKDIR /var/www
+
+RUN useradd -ms /bin/bash debian
+RUN echo "debian ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+USER debian
+WORKDIR /home/debian
