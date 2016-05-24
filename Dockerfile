@@ -38,4 +38,4 @@ EXPOSE 80 443
 
 WORKDIR /var/www
 
-CMD sudo service nginx restart && sudo service php5-fpm restart
+CMD service nginx restart && service php5-fpm restart && tail -F /var/log/nginx/*
