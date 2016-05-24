@@ -37,3 +37,5 @@ ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 80 443
 
 WORKDIR /var/www
+
+CMD sudo service nginx restart && sudo service php5-fpm restart
