@@ -35,6 +35,10 @@ COPY ./scripts/default.conf /etc/nginx/sites-available/default.conf
 COPY ./cp /root/cp
 COPY ./scripts/serve.sh /usr/bin/serve
 RUN chmod +x /usr/bin/serve
+RUN chown -R www-data:www-data /root/cp
+RUN cd /root/cp && composer install
+RUN cd /root/cp && npm install
+RUN cd /root/cp && gulp coffee
 
 ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 80 443
