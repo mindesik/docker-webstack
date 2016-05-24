@@ -18,6 +18,8 @@ RUN apt-get install -y \
     php5-pgsql \
     php5-xdebug
 
+RUN echo xdebug.max_nesting_level=500 >> /etc/php5/mods-available/xdebug.ini
+
 RUN wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz && tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
 RUN ls -l /usr/local/bin/node
 RUN ls -l /usr/local/bin/npm
