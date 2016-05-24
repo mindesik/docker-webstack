@@ -31,18 +31,24 @@ RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN wget https://getcomposer.org/download/1.1.1/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 RUN wget https://phar.phpunit.de/phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit
 
-COPY ./scripts/default.conf /etc/nginx/sites-available/default.conf
 COPY ./cp /root/cp
-COPY ./scripts/serve.sh /usr/bin/serve
-RUN chmod +x /usr/bin/serve
-RUN chown -R www-data:www-data /root/cp
-RUN cd /root/cp && composer install
+RUN php5dismod xdebug && cd /root/cp && composer install --no-interaction && php5enmod xdebug
 RUN cd /root/cp && npm install
 RUN cd /root/cp && gulp coffee
+
+COPY ./scripts/default /root/default
+COPY ./scripts/serve.sh /usr/bin/serve
+RUN chmod +x /usr/bin/serve
 
 ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 80 443
 
 WORKDIR /var/www
 
-CMD service nginx restart && service php5-fpm restart && tail -F /var/log/nginx/*
+CMD rm /etc/nginx/sites-available/default \
+    && chown -R www-data:www-data /root \
+    && chmod -R 755 /root \
+    && cp /root/default /etc/nginx/sites-available/default \
+    && service nginx restart \
+    && service php5-fpm restart \
+    && tail -F /var/log/nginx/*
