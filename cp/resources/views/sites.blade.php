@@ -37,13 +37,25 @@
             </div>
             <div class="col-sm-8">
                 <h4>Sites list</h4>
-                <ul id="sites">
-                    @foreach ($sites as $site)
-                        @if (basename($site) != 'default')
-                            <li>{{ basename($site) }} — <button class="btn btn-xs btn-danger" data-domain="{{ basename($site) }}">Delete</button></li>
-                        @endif
-                    @endforeach
-                </ul>
+                @if (count($sites) > 1)
+                    <table id="sites" class="table">
+                        <thead>
+                            <tr>
+                                <td>Domain</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sites as $site)
+                                @if (basename($site) != 'default')
+                                    <tr><td>{{ basename($site) }}</td><td><button class="btn btn-xs btn-danger" data-domain="{{ basename($site) }}">Delete</button></td></tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>No websites</p>
+                @endif
             </div>
         </div>
     </div>

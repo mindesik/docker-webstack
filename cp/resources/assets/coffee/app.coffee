@@ -12,7 +12,7 @@ class SiteManager
             
             return false
         )
-        @list.on('click', 'li button', (e) =>
+        @list.on('click', 'td button', (e) =>
             @removeSite e
             return false
         )
