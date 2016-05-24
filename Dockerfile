@@ -26,12 +26,13 @@ RUN ls -l /usr/local/bin/npm
 RUN npm i -g npm
 RUN npm i -g gulp-cli
 
-RUN echo user = 1000 >> /etc/php5/fpm/pool.d/www.conf
-RUN echo group = staff >> /etc/php5/fpm/pool.d/www.conf
+RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN wget https://getcomposer.org/download/1.1.1/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 RUN wget https://phar.phpunit.de/phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit
 
+COPY ./scripts/default.conf /etc/nginx/sites-available/default.conf
+COPY ./cp /root/cp
 COPY ./scripts/serve.sh /usr/bin/serve
 RUN chmod +x /usr/bin/serve
 
