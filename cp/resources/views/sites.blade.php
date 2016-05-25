@@ -38,7 +38,7 @@
             <div class="col-sm-8">
                 <h4>Sites list</h4>
                 @if (count($sites) > 1)
-                    <table id="sites" class="table">
+                    <table id="sites" class="table small">
                         <thead>
                             <tr>
                                 <td>Domain</td>
