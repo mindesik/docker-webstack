@@ -45,8 +45,7 @@ EXPOSE 80 443
 
 WORKDIR /var/www
 
-CMD rm /etc/nginx/sites-available/default \
-    && chown -R www-data:www-data /root \
+CMD chown -R www-data:www-data /root \
     && chmod -R 755 /root \
     && cp /root/default /etc/nginx/sites-available/default \
     && service nginx restart \
