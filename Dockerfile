@@ -1,53 +1,36 @@
 FROM debian:latest
 MAINTAINER Eugene Min <e.min@milax.com>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update -y
 RUN apt-get install -y \
     sudo \
     nano \
     wget \
-    curl \
-    nginx \
-    php5-fpm \
-    php5-memcached \
-    php5-cli \
-    php5-mcrypt \
-    php5-curl \
-    php5-mysql \
-    php5-sqlite \
-    php5-pgsql \
-    php5-xdebug
+    curl
 
-RUN echo xdebug.max_nesting_level=500 >> /etc/php5/mods-available/xdebug.ini
+RUN rm /var/lib/apt/lists/*gz
+RUN apt-get -o Acquire::GzipIndexes=false update
 
-RUN wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz && tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
-RUN ls -l /usr/local/bin/node
-RUN ls -l /usr/local/bin/npm
-RUN npm i -g npm
-RUN npm i -g gulp-cli
+RUN wget http://repo.ajenti.org/debian/key -O- | apt-key add -
+RUN echo "deb http://repo.ajenti.org/debian main main debian" >> /etc/apt/sources.list
+
+RUN apt-get update -y
+RUN apt-get install -y -f ajenti
+RUN apt-get install -y ajenti-v ajenti-v-nginx ajenti-v-php-fpm php5-mysql php5-memcached php5-mcrypt php5-gd php5-sqlite php5-pgsql php5-xdebug
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN wget https://getcomposer.org/download/1.1.1/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 RUN wget https://phar.phpunit.de/phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit
 
-COPY ./cp /root/cp
-RUN php5dismod xdebug && cd /root/cp && composer install --no-interaction && php5enmod xdebug
-RUN cd /root/cp && npm install
-RUN cd /root/cp && gulp coffee
+WORKDIR /srv
 
-COPY ./scripts/default /root/default
-COPY ./scripts/serve.sh /usr/bin/serve
-RUN chmod +x /usr/bin/serve
+RUN apt-get install -y php5-curl
+RUN rm /etc/ajenti/config.json
+COPY ./scripts/config.json /etc/ajenti/config.json
+COPY ./scripts/ajenti.conf /etc/nginx/conf.d/ajenti.conf
 
-ENV DEBIAN_FRONTEND noninteractive
-EXPOSE 80 443
-
-WORKDIR /var/www
-
-CMD chown -R www-data:www-data /root \
-    && chmod -R 755 /root \
-    && cp /root/default /etc/nginx/sites-available/default \
-    && service nginx restart \
-    && service php5-fpm restart \
-    && tail -F /var/log/nginx/*
+EXPOSE 80 8000 443
+CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/ajenti/*
