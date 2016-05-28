@@ -33,4 +33,4 @@ COPY ./scripts/config.json /etc/ajenti/config.json
 COPY ./scripts/ajenti.conf /etc/nginx/conf.d/ajenti.conf
 
 EXPOSE 80 8000 443
-CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/ajenti/*
+CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
