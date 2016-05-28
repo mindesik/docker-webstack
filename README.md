@@ -1,6 +1,6 @@
 # docker-nginx-php
 
-Image based on Debian jessie with pre-installed nginx and php-fpm 5.6.
+Image based on Debian jessie with pre-installed [Ajenti](http://ajenti.org) and Ajenti V hosting add-on.
 
 Use with:
 
