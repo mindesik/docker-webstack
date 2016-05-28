@@ -4,4 +4,4 @@ Image based on Debian jessie with pre-installed [Ajenti](http://ajenti.org) and 
 
 Use with:
 
-- [docker-compose-stacks](https://github.com/misterpaladin/docker-compose-stacks)
+- [docker-compose-ajenti](https://github.com/misterpaladin/docker-compose-ajenti)
