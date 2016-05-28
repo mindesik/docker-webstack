@@ -31,6 +31,7 @@ RUN apt-get install -y php5-curl
 RUN rm /etc/ajenti/config.json
 COPY ./scripts/config.json /etc/ajenti/config.json
 COPY ./scripts/ajenti.conf /etc/nginx/conf.d/ajenti.conf
+RUN echo "xdebug.max_nesting_level=500" >> /etc/php5/mods-available/xdebug.ini
 
 EXPOSE 80 8000 443
 CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
