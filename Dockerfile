@@ -8,7 +8,8 @@ RUN apt-get install -y \
     sudo \
     nano \
     wget \
-    curl
+    curl \
+    openssh-client
 
 RUN rm /var/lib/apt/lists/*gz
 RUN apt-get -o Acquire::GzipIndexes=false update
