@@ -31,7 +31,7 @@ WORKDIR /srv
 RUN apt-get install -y php5-curl
 RUN rm /etc/ajenti/config.json
 COPY ./scripts/config.json /etc/ajenti/config.json
-COPY ./scripts/ajenti.conf /etc/nginx/conf.d/ajenti.conf
+COPY ./scripts/vh.json /etc/ajenti/vh.json
 RUN echo "xdebug.max_nesting_level=500" >> /etc/php5/mods-available/xdebug.ini
 
 RUN apt-get install -y git
