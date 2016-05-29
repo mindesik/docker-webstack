@@ -33,5 +33,10 @@ COPY ./scripts/config.json /etc/ajenti/config.json
 COPY ./scripts/ajenti.conf /etc/nginx/conf.d/ajenti.conf
 RUN echo "xdebug.max_nesting_level=500" >> /etc/php5/mods-available/xdebug.ini
 
+RUN apt-get install -y git
+RUN wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
+RUN npm -g install npm
+
 EXPOSE 80 8000 443
 CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
