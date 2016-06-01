@@ -38,6 +38,9 @@ RUN apt-get install -y git
 RUN wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz
 RUN tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
 RUN npm -g install npm
+RUN npm -g install gulp-cli
+RUN npm -g install coffee-script
+RUN npm -g install bower
 
 EXPOSE 80 8000 443
 CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
