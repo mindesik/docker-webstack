@@ -41,6 +41,7 @@ RUN npm -g install npm
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
+RUN php5dismod xdebug
 
 EXPOSE 80 8000 443
 CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
