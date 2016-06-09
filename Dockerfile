@@ -19,7 +19,7 @@ RUN echo "deb http://repo.ajenti.org/debian main main debian" >> /etc/apt/source
 
 RUN apt-get update -y
 RUN apt-get install -y -f ajenti
-RUN apt-get install -y ajenti-v ajenti-v-nginx ajenti-v-php-fpm php5-mysql php5-memcached php5-mcrypt php5-gd php5-sqlite php5-pgsql php5-xdebug php5-json
+RUN apt-get install -y ajenti-v ajenti-v-nginx ajenti-v-php-fpm php5-mysql php5-memcached php5-mcrypt php5-gd php5-sqlite php5-pgsql php5-xdebug php5-json php5-mysqlnd
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
