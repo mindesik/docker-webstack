@@ -1,9 +1,10 @@
 #!/bin/bash
 
-sed -i 's/sendfile on/sendfile off/g' /etc/nginx/nginx.conf
 service ajenti start
 until ajenti-ipc v apply; do
-    echo Ajenti is not ready, retrying in 10 seconds...
-    sleep 10
+    echo Ajenti is not ready, retrying in 5 seconds...
+    sleep 5
 done
+sed -i 's/sendfile on/sendfile off/g' /etc/nginx/nginx.conf
+service nginx restart
 tail -f /var/log/nginx/*
