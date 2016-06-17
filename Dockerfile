@@ -44,5 +44,8 @@ RUN npm -g install coffee-script
 RUN npm -g install bower
 RUN php5dismod xdebug
 
+COPY ./scripts/startup.sh /root/startup.sh
+RUN chmod +x /root/startup.sh
+
 EXPOSE 80 8000 443
-CMD service ajenti start && sleep 10 && ajenti-ipc v apply && tail -f /var/log/nginx/*
+CMD sh /root/startup.sh
