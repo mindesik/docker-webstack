@@ -44,9 +44,6 @@ RUN npm -g install coffee-script
 RUN npm -g install bower
 RUN php5dismod xdebug
 
-RUN apt-get install zsh -y
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 COPY ./scripts/startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
 
