@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM debian:8.6
 MAINTAINER Eugene Min <e.min@milax.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -12,7 +12,7 @@ RUN apt-get install -y \
     openssh-client
 
 RUN apt-get update -y
-RUN apt-get install -y nginx php7.0-fpm php-memcached php7.0-mcrypt php7.0-gd php7.0-sqlite php7.0-pgsql php-xdebug php7.0-json php7.0-mysqlnd
+RUN apt-get install -y nginx php5-fpm php5-memcached php5-mcrypt php5-gd php5-sqlite php5-pgsql php5-xdebug php5-json php5-mysqlnd
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -21,7 +21,7 @@ RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-librar
 
 WORKDIR /srv
 
-RUN apt-get install -y php7.0-curl
+RUN apt-get install -y php5-curl
 
 RUN apt-get install -y git
 RUN wget https://nodejs.org/download/release/v4.6.0/node-v4.6.0-linux-x64.tar.gz
@@ -30,10 +30,10 @@ RUN npm -g install npm
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
-RUN phpdismod xdebug
+RUN php5dismod xdebug
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
 
 EXPOSE 80 8000 443
-CMD service nginx restart && service php7.0-fpm restart && tail -f /var/log/nginx/*
+CMD service nginx restart && service php5-fpm restart && tail -f /var/log/nginx/*
