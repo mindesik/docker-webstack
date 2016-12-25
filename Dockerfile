@@ -15,7 +15,7 @@ RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 RUN apt-get update -y
-RUN apt-get install -y nginx php5.6-fpm php5.6-memcached php5.6-mcrypt php5.6-gd php5.6-sqlite php5.6-xdebug php5.6-json php5.6-mysqlnd php5.6-curl
+RUN apt-get install -y nginx php5.6-fpm php5.6-mbstring php5.6-memcached php5.6-mcrypt php5.6-gd php5.6-sqlite php5.6-xdebug php5.6-json php5.6-mysqlnd php5.6-curl
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
