@@ -1,7 +1,5 @@
 # docker-nginx-php
 
-Image based on Debian jessie with pre-installed [Ajenti](http://ajenti.org) and Ajenti V hosting add-on.
+Image based on Ubuntu Xenial.
 
-Use with:
-
-- [docker-compose-ajenti](https://github.com/misterpaladin/docker-compose-ajenti)
+Use with [docker-compose-lemp](https://github.com/misterpaladin/docker-compose-lemp).
