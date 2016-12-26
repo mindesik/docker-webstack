@@ -4,12 +4,7 @@ MAINTAINER Eugene Min <e.min@milax.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y
-RUN apt-get install -y \
-    sudo \
-    nano \
-    wget \
-    curl \
-    openssh-client
+RUN apt-get install -y sudo nano wget curl openssh-client zip
 
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
