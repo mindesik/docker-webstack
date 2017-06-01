@@ -8,9 +8,10 @@ RUN apt-get install -y sudo nano wget curl openssh-client zip
 
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
-RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update -y
-RUN apt-get install -y nginx php5.6-fpm php5.6-mbstring php5.6-memcached php5.6-mcrypt php5.6-gd php5.6-sqlite php5.6-xdebug php5.6-json php5.6-mysqlnd php5.6-curl php5.6-xml php5.6-bcmath
+RUN apt list php7.1-fpm
+RUN apt-get install -y --allow-unauthenticated nginx php7.1-fpm php7.1-mbstring php7.1-memcached php7.1-mcrypt php7.1-gd php7.1-sqlite php7.1-xdebug php7.1-json php7.1-mysqlnd php7.1-curl php7.1-xml php7.1-bcmath
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -22,9 +23,8 @@ RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-librar
 WORKDIR /srv
 
 RUN apt-get install -y git
-RUN wget https://nodejs.org/download/release/v4.6.0/node-v4.6.0-linux-x64.tar.gz
-RUN tar -C /usr/local --strip-components 1 -xzf node-v4.6.0-linux-x64.tar.gz
-RUN npm -g install npm
+RUN wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v6.10.3-linux-x64.tar.gz
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
@@ -34,4 +34,4 @@ COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
 
 EXPOSE 80 8000 443
-CMD service nginx start && service php5.6-fpm start && tail -F /var/log/nginx/*
+CMD service nginx start && service php7.1-fpm start && tail -F /var/log/nginx/*
