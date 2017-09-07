@@ -33,6 +33,7 @@ RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
 RUN phpdismod xdebug
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
