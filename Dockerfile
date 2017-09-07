@@ -39,4 +39,4 @@ COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
 
 EXPOSE 80 8000 443
-CMD service nginx start && service php7.1-fpm start && tail -F /var/log/nginx/*
+CMD export PATH="$PATH:/opt/yarn-[version]/bin" && service nginx start && service php7.1-fpm start && tail -F /var/log/nginx/*
