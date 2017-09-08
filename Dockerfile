@@ -27,13 +27,13 @@ RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-librar
 WORKDIR /srv
 
 RUN apt-get install -y git
-RUN wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-x64.tar.gz
-RUN tar -C /usr/local --strip-components 1 -xzf node-v6.10.3-linux-x64.tar.gz
+RUN wget https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v6.11.3-linux-x64.tar.gz
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
+RUN npm -g install yarn
 RUN phpdismod xdebug
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
