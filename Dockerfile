@@ -4,7 +4,10 @@ MAINTAINER Eugene Min <e.min@milax.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y
-RUN apt-get install -y sudo nano wget curl openssh-client zip
+RUN apt-get install -y sudo nano wget curl openssh-client zip apt-transport-https
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
@@ -32,7 +35,7 @@ RUN tar -C /usr/local --strip-components 1 -xzf node-v6.11.3-linux-x64.tar.gz
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
-RUN npm -g install yarn
+RUN apt-get install yarn -y
 RUN phpdismod xdebug
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
