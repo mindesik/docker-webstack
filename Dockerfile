@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     export LANG=en_US.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN apt-get update -y
-RUN apt-get install -y --allow-unauthenticated nginx php7.1-fpm php7.1-mbstring php7.1-memcached php7.1-mcrypt php7.1-gd php7.1-sqlite php7.1-xdebug php7.1-json php7.1-mysqlnd php7.1-curl php7.1-xml php7.1-bcmath
+RUN apt-get install -y --allow-unauthenticated nginx php7.1-fpm php7.1-mbstring php7.1-memcached php7.1-mcrypt php7.1-gd php7.1-sqlite php7.1-xdebug php7.1-json php7.1-mysqlnd php7.1-pdo-pgsql php7.1-curl php7.1-xml php7.1-bcmath
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -30,8 +30,9 @@ RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-librar
 WORKDIR /srv
 
 RUN apt-get install -y git
-RUN wget https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.gz
-RUN tar -C /usr/local --strip-components 1 -xzf node-v6.11.3-linux-x64.tar.gz
+RUN wget https://nodejs.org/dist/v8.9.1/node-v8.9.1-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v8.9.1-linux-x64.tar.gz
+RUN rm node-v8.9.1-linux-x64.tar.gz
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
