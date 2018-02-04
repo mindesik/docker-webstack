@@ -30,9 +30,9 @@ RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-librar
 WORKDIR /srv
 
 RUN apt-get install -y git
-RUN wget https://nodejs.org/dist/v8.9.1/node-v8.9.1-linux-x64.tar.gz
-RUN tar -C /usr/local --strip-components 1 -xzf node-v8.9.1-linux-x64.tar.gz
-RUN rm node-v8.9.1-linux-x64.tar.gz
+RUN wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v8.9.4-linux-x64.tar.gz
+RUN rm node-v8.9.4-linux-x64.tar.gz
 RUN npm -g install gulp-cli
 RUN npm -g install coffee-script
 RUN npm -g install bower
