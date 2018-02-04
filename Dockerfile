@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     export LANG=en_US.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN apt-get update -y
-RUN apt-get install -y --allow-unauthenticated nginx php7.1-fpm php7.1-mbstring php7.1-memcached php7.1-mcrypt php7.1-gd php7.1-sqlite php7.1-xdebug php7.1-json php7.1-mysqlnd php7.1-pdo-pgsql php7.1-curl php7.1-xml php7.1-bcmath php7.1-imagick ruby ruby-dev make gcc build-essential
+RUN apt-get install -y --allow-unauthenticated nginx php7.2-fpm php7.2-mbstring php7.2-memcached php7.2-gd php7.2-sqlite php7.2-json php7.2-mysqlnd php7.2-pdo-pgsql php7.2-curl php7.2-xml php7.2-bcmath php7.2-imagick ruby ruby-dev make gcc build-essential
 RUN gem install jekyll bundler
 
 RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -41,4 +41,4 @@ COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
 
 EXPOSE 80 8000 443
-CMD service nginx start && service php7.1-fpm start && tail -F /var/log/nginx/*
+CMD service nginx start && service php7.2-fpm start && tail -F /var/log/nginx/*
