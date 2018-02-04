@@ -35,7 +35,6 @@ RUN wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.gz
 RUN tar -C /usr/local --strip-components 1 -xzf node-v8.9.4-linux-x64.tar.gz
 RUN rm node-v8.9.4-linux-x64.tar.gz
 RUN apt-get install yarn -y
-RUN phpdismod xdebug
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
