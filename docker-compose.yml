@@ -3,7 +3,7 @@ version: '2'
 services:
     app:
         container_name: webstack
-        image: misterpaladin/webstack:2.2.2
+        image: misterpaladin/webstack:2.2.3
         ports:
             - 8000:8000
             - 80:80
