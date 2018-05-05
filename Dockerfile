@@ -27,7 +27,7 @@ RUN echo "www-data ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN rm composer-setup.php
-RUN wget https://phar.phpunit.de/phpunit-library-5.3.5.phar && mv phpunit-library-5.3.5.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit
+RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && mv phpunit /usr/local/bin && chmod +x /usr/local/bin/phpunit
 
 WORKDIR /srv
 
