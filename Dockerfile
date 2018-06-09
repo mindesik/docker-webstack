@@ -43,4 +43,4 @@ COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
 
 EXPOSE 80 8000 443
-CMD service nginx start && service php5.6-fpm start && service php7.0-fpm && service php7.1-fpm && service php7.2-fpm start && tail -F /var/log/nginx/*
+CMD service nginx start && service php5.6-fpm start && service php7.0-fpm start && service php7.1-fpm start && service php7.2-fpm start && tail -F /var/log/nginx/*
