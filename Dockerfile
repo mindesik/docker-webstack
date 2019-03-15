@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Min De Sik <ds@codesmith.ru>
+LABEL maintainer="Min De Sik <e.v.min@icloud.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -34,10 +34,10 @@ RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && mv phpunit /usr/lo
 WORKDIR /srv
 
 RUN apt-get install -y git
-RUN wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.gz
-RUN tar -C /usr/local --strip-components 1 -xzf node-v8.9.4-linux-x64.tar.gz
-RUN rm node-v8.9.4-linux-x64.tar.gz
-RUN apt-get install yarn -y
+RUN wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.gz
+RUN tar -C /usr/local --strip-components 1 -xzf node-v10.15.3-linux-x64.tar.gz
+RUN rm node-v10.15.3-linux-x64.tar.gz
+RUN apt-get install yarn -y --no-install-recommends
 
 COPY ./scripts/serve.sh /usr/local/bin/serve
 RUN chmod +x /usr/local/bin/serve
